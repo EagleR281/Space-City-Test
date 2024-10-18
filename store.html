@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتجر</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            padding: 20px;
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .item {
+            background-color: #09081b;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 25px rgb(149, 0, 255);
+            color: white;
+            transition: transform 0.2s;
+            width: 220px;
+        }
+        .item:hover {
+            transform: scale(1.05);
+        }
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            display: none;
+            background-color: #4CAF50;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .back-button, .main-button {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px 15px;
+            background-color: #0d1927;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover, .main-button:hover {
+            background-color: #092e2c;
+        }
+        /* شاشة التحميل */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(30, 30, 30, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .loading-screen img {
+            width: 100px;
+            height: auto;
+            animation: rotate 1s linear infinite;
+        }
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .loading-message {
+            color: white;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+     
+        .server-image {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px; 
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://cdn.discordapp.com/attachments/1205297616783417405/1295977829770727536/discordlogos.png?ex=67129728&is=671145a8&hm=8ff0d999c72f4b1087b56aa1d90f6fbbd812daa3b81659847befddb7dbae2fad&" alt="سيرفر" class="server-image">
+    <h2>المركبات</h2>
+    <button class="back-button" onclick="goToMainMenu()">الرجوع إلى القائمة الرئيسية</button>
+    <div class="container" id="vehicles">
+        <div class="item">
+            <img src="https://cdn.salla.sa/RAYwVw/eca58189-1fdb-45ac-b177-63e6c957886a-1000x562.5-IX17KmaXFfzkhLkwugM57uzTO0Q0lfY2wXP7b8NZ.png" alt="Charger" onclick="showDetails('Charger', 'تفاصيل عن Charger')">
+            <p>Charger</p>
+            <div class="details">
+                <p>المركبه توصل لسرعو 352 دفع رباعي وصوتها جميل, الدمج عالي فيها, اي ماتتدمج بسرعه, السعر $30</p>
+                <button class="button pay-button">طلب</button>
+            </div>
+        </div>
+        <div class="item">
+            <img src="https://cdn.salla.sa/RAYwVw/d61cd403-e783-46b3-b906-5abad70f5940-500x236.29112662014-07qxbr1aZf2nmb7MPenOdHOulrpaYwKFlS6Uh9tx.png" alt="2018 Chrysler 300 SRT" onclick="showDetails('2018 Chrysler 300 SRT', 'تفاصيل  Chrysler 300 SRT')">
+            <p>2018 Chrysler 300 SRT</p>
+            <div class="details">
+                <p>المركبه توصل لسرعو 416 دفع رباعي وصوتها جميل, الدمج عالي فيها, اي ماتتدمج بسرعه, السعر $50</p>
+                <button class="button pay-button">طلب</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-message" class="message"></div>
+
+    <script>
+        const usedOrderNumbers = new Set();
+
+        function generateUniqueOrderNumber() {
+            let orderNumber;
+            do {
+                orderNumber = Math.floor(Math.random() * 1000000000);
+            } while (usedOrderNumbers.has(orderNumber));
+
+            usedOrderNumbers.add(orderNumber);
+            return orderNumber;
+        }
+
+        function showDetails(productName, productDetails) {
+            const detailsDiv = document.createElement('div');
+            detailsDiv.innerHTML = `
+                <strong>${productName}</strong><br>
+                ${productDetails}<br>
+            `;
+            detailsDiv.style.marginBottom = '10px';
+            document.body.appendChild(detailsDiv);
+        }
+
+        function goToMainMenu() {
+            const loadingScreen = document.createElement('div');
+            loadingScreen.className = 'loading-screen';
+            loadingScreen.innerHTML = `
+                <img src="https://cdn.discordapp.com/attachments/1205297616783417405/1295977829770727536/discordlogos.png?ex=67129728&is=671145a8&hm=8ff0d999c72f4b1087b56aa1d90f6fbbd812daa3b81659847befddb7dbae2fad&" alt="Loading...">
+                <div class="loading-message">جارٍ التحميل...</div>
+            `;
+            document.body.innerHTML = '';
+            document.body.appendChild(loadingScreen);
+
+            setTimeout(() => {
+                window.location.href = '/index.html';
+            }, 2000);
+        }
+
+        document.querySelectorAll('.pay-button').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                event.stopPropagation();
+
+                const item = button.closest('.item');
+                const productName = item.querySelector('p').textContent;
+                const productDetails = item.querySelector('.details p').textContent;
+
+                const orderNumber = generateUniqueOrderNumber();
+
+                const data = {
+                    content: `**طلب جديد**\n\n**المنتج:** ${productName}\n**التفاصيل:** ${productDetails}\n**رقم الطلب:** ${orderNumber}\n**رقم الروم:** 1296802728626098196`,
+                    embeds: [
+                        {
+                            image: {
+                                url: item.querySelector('img').src
+                            }
+                        }
+                    ]
+                };
+
+                const webhookUrl = 'https://discord.com/api/webhooks/1296805368567169114/7ULvR7IYZiN45oOz24yeTYh6lAipRaFWnTsJG2W5Xevk9C7K6R3g3M9ZMaXSm-OiCWGf';
+
+                try {
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        const messageDiv = document.getElementById('success-message');
+                        messageDiv.textContent = `تم إرسال الطلب بنجاح إلى ديسكورد! رقم الطلب: ${orderNumber}`;
+                        messageDiv.style.display = 'block';
+                    } else {
+                        alert("فشل في إرسال الطلب.");
+                    }
+                } catch (error) {
+                    console.error("خطأ في الاتصال:", error);
+                    alert("حدث خطأ أثناء إرسال الطلب.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

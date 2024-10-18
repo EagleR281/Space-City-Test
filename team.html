@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فريق 𝐒𝐏𝐀𝐂𝐄 𝐂𝐈𝐓𝐘 𝐂𝐅𝐖</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #1e1e1e;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #00ffcc;
+            text-decoration: none;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .team-member {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .team-member h3 {
+            margin: 10px 0 5px 0;
+        }
+
+        .team-member p {
+            margin: 0;
+            color: #aaa;
+        }
+
+      
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(58, 6, 68); 
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .loading-screen img {
+            width: 200px;
+            height: auto;
+        }
+
+    
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .loading-screen.show.slide-down {
+            animation: slideDown 0.5s forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="http://127.0.0.1:5500/index.html">الرئيسية</a></li>
+            <li><a href="http://127.0.0.1:5500/team.html">الفريق</a></li>
+            <li><a href="#" class="laws-button">القوانين</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>فريق 𝐒𝐏𝐀𝐂𝐄 𝐂𝐈𝐓𝐘 𝐂𝐅𝐖</h1>
+    </header>
+
+    <div class="team-container">
+      
+        <div class="team-member">
+            <img src="https://cdn.discordapp.com/attachments/1205297616783417405/1296795022594674739/download.jpeg?ex=671395fa&is=6712447a&hm=490f4de149aa3e95a2a07ce2252d2b0cd62eb9c406e8f9a3dd0f84ad99a6342e&" alt="khaled Alotaibi">
+            <h3>khaled Alotaibi</h3>
+            <p></p>
+        </div>
+        <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="عضو 2">
+            <h3>اسم العضو 2</h3>
+            <p>وصف العضو 2</p>
+        </div>
+        <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="عضو 3">
+            <h3>اسم العضو 3</h3>
+            <p>وصف العضو 3</p>
+        </div>
+      
+    </div>
+
+
+    <div id="loading" class="loading-screen">
+        <img src="https://cdn.discordapp.com/attachments/1205297616783417405/1295977829770727536/discordlogos.png?ex=67129728&is=671145a8&hm=8ff0d999c72f4b1087b56aa1d90f6fbbd812daa3b81659847befddb7dbae2fad&" alt="Loading...">
+    </div>
+
+    <script>
+        const loadingScreen = document.getElementById('loading');
+
+    
+        function navigateTo(url) {
+            loadingScreen.classList.add('show', 'slide-down'); 
+
+      
+            setTimeout(() => {
+                window.location.href = url; 
+            }, 2000); 
+        }
+
+        
+        document.querySelector('.laws-button').addEventListener('click', function(event) {
+            event.preventDefault(); 
+            navigateTo('http://127.0.0.1:5500/laws.html'); 
+        });
+
+     
+        document.querySelector('nav a[href="http://127.0.0.1:5500/index.html"]').addEventListener('click', function(event) {
+            event.preventDefault(); 
+            navigateTo('http://127.0.0.1:5500/index.html');
+        });
+    </script>
+</body>
+</html>

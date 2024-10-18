@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوانين السيرفر</title>
+    <link rel="stylesheet" href="/s.css">
+    <style>
+        html {
+            scroll-behavior: smooth; 
+        }
+
+        .loadingScreen {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(58, 6, 68); 
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: slideIn 1s forwards; 
+        }
+
+        .loading-logo {
+            width: 200px; 
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%); 
+            }
+            to {
+                transform: translateX(0); 
+            }
+        }
+
+        .button-container {
+            margin: 20px 0; 
+        }
+
+        .button {
+            padding: 10px 20px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+            margin: 5px; 
+        }
+
+        .button:hover {
+            background-color: #0056b3; 
+        }
+
+        
+        .top-left-buttons {
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            z-index: 1000; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://cdn.discordapp.net/attachments/1036265211348402206/1241337520457781319/Avatar.gif?ex=6712e1e7&is=67119067&hm=5720903dbaf169784174c279100d20e6aa9d1c7d6d201a822750ab42f50aaf13&" alt="شعار السيرفر" class="logo">
+        
+        <div class="home-button-container">
+            <button id="home-button" class="button">الهوم</button>
+        </div>
+    </header>
+
+    <div class="top-left-buttons">
+        <button class="button" id="button1">زر 1 - الانتقال للصفحة الرئيسية</button>
+        <button class="button" id="button2">زر 2 - الانتقال لقوانين الإجرام</button>
+        <button class="button" id="button3">زر 3 - الانتقال لفريق العمل</button>
+    </div>
+
+    <div class="sidebar">
+        <h2>فهرس القوانين</h2>
+        <ul>
+            <li><a href="#general-laws" class="law-link">القوانين العامة</a></li>
+            <li><a href="#roleplay-laws" class="law-link">قوانين تقمص الشخصية</a></li>
+            <li><a href="#crime-laws" class="law-link">قوانين الإجرام</a></li>
+            <li><a href="#restaurant-laws" class="law-link">قوانين المطاعم</a></li>
+            <li><a href="#admin-laws" class="law-link">قوانين الإدارة</a></li>
+            <li><a href="#store-laws" class="law-link">قوانين المتجر</a></li>
+            <li><a href="#other-laws" class="law-link">قوانين أخرى</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="laws-board">
+            <div class="law-section" id="general-laws">
+                <h3 class="law-title">القوانين العامة</h3>
+                <ul>
+                    <li>يجب عليك احترام جميع اللاعبين وأعضاء إدارة السيرفر.</li>
+                    <li>يمنع منعا باتا التحرش أو الكراهية أو السلوك المسيء.</li>
+                    <li>يمنع استغلال الثغرات أو الغش بأي شكل.</li>
+                    <li>منع التنمر أو التسبب في الإزعاج.</li>
+                    <li>يجب الالتزام بالواقعية داخل السيرفر.</li>
+                    <li>يجب عليك استخدام أسماء واقعية مناسبة للشخصيات.</li>
+                    <li>يجب أن تكون لشخصيتك نمط ثابت.</li>
+                    <li>لا تلجأ للعب بقوة (Power-Gaming).</li>
+                    <li>اتبع السلوك الواقعي لوظيفة الشخصية.</li>
+                    <li>يجب عليك تقدير حياة شخصيتك داخل اللعبة.</li>
+                    <li>لا تقوم بأفعال غير ضرورية أو انتحارية (NVL).</li>
+                    <li>يمنع استخدام المركبة كسلاح (VDM).</li>
+                    <li>يمنع القتل أو الاعتداء العشوائي (RDM) بدون سبب واضح.</li>
+                </ul>
+            </div>
+
+            <div class="law-section" id="roleplay-laws">
+                <h3 class="law-title">قوانين تقمص الشخصية</h3>
+                <ul>
+                    <li>يجب على اللاعبين اتباع صفات الشخصية التي يلعبون بها.</li>
+                    <li>يمنع تغيير الشخصية بشكل مفاجئ أو غير مبرر.</li>
+                    <li>يجب على اللاعبين تطوير شخصياتهم وتاريخها.</li>
+                </ul>
+            </div>
+
+            <div class="law-section" id="crime-laws">
+                <h3 class="law-title">قوانين الإجرام</h3>
+                <ul>
+                    <li>يجب أن يكون هناك سبب منطقي لكل جريمة تحدث.</li>
+                    <li>لا يمكن الاعتداء على اللاعبين بدون سبب.</li>
+                    <li>يجب على اللاعبين الالتزام بالقوانين التي تنظم الأنشطة الإجرامية.</li>
+                </ul>
+            </div>
+
+            <div class="law-section" id="restaurant-laws">
+                <h3 class="law-title">قوانين المطاعم</h3>
+                <ul>
+                    <li>يجب أن تكون جميع الطلبات صحيحة ومطابقة للقائمة.</li>
+                    <li>يجب على اللاعبين احترام موظفي المطاعم والعملاء.</li>
+                    <li>لا يُسمح بأي سلوك غير لائق داخل المطعم.</li>
+                </ul>
+            </div>
+
+            <div class="law-section" id="admin-laws">
+                <h3 class="law-title">قوانين الإدارة</h3>
+                <ul>
+                    <li>يجب على الإدارة التصرف بإنصاف وشفافية.</li>
+                    <li>يمنع منعا باتا استخدام الصلاحيات الإدارية لمصلحة شخصية.</li>
+                    <li>يجب على الإدارة الاستماع لمشاكل اللاعبين والعمل على حلها.</li>
+                </ul>
+            </div>
+
+            <div class="law-section" id="store-laws">
+                <h3 class="law-title">قوانين المتجر</h3>
+                <ul>
+                    <li>يجب أن تكون أسعار السلع واضحة ومناسبة.</li>
+                    <li>يجب على اللاعبين عدم الاحتيال على بعضهم في المتجر.</li>
+                </ul>
+            </div>
+
+            <div class="law-section" id="other-laws">
+                <h3 class="law-title">قوانين أخرى</h3>
+                <ul>
+                    <li>يجب على اللاعبين الالتزام بقواعد السيرفر في جميع الأوقات.</li>
+                    <li>يجب على اللاعبين الإبلاغ عن أي سلوك غير لائق أو غش.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <div class="loadingScreen" id="loadingScreen">
+        <img src="https://cdn.discordapp.com/attachments/1036265211348402206/1241337520457781319/Avatar.gif?ex=6712e1e7&is=67119067&hm=5720903dbaf169784174c279100d20e6aa9d1c7d6d201a822750ab42f50aaf13&" alt="شعار السيرفر" class="loading-logo">
+    </div>
+
+    <script>
+       
+        const lawLinks = document.querySelectorAll('.law-link');
+        const homeButton = document.getElementById('home-button');
+        const loadingScreen = document.getElementById('loadingScreen');
+
+      
+        lawLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' }); 
+            });
+        });
+
+      
+        homeButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('button1').addEventListener('click', () => {
+            loadingScreen.style.display = 'flex'; 
+            window.location.href = 'http://127.0.0.1:5500/index.html#'; 
+        });
+
+        document.getElementById('button2').addEventListener('click', () => {
+            loadingScreen.style.display = 'flex';
+            window.location.href = 'http://127.0.0.1:5500/laws.html#crime-laws'; 
+        });
+
+        document.getElementById('button3').addEventListener('click', () => {
+            loadingScreen.style.display = 'flex'; 
+            window.location.href = 'http://127.0.0.1:5500/team.html'; 
+        });
+
+        
+        loadingScreen.style.display = 'flex'; 
+
+      
+        setTimeout(() => {
+            loadingScreen.style.display = 'none'; 
+        }, 3000); 
+    </script>
+</body>
+</html>
